@@ -2,3 +2,6 @@
   border-radius: 10px;
   overflow: hidden;
 }
+.navbar-brand {
+  margin: 20px;
+}
