@@ -4,7 +4,6 @@ import "../styles/styles.css";
 import { useNavigate } from "react-router-dom";
 
 const ListEmployeeComponents = () => {
-
   const [employees, setEmployees] = useState([]);
   const navigator = useNavigate();
 
@@ -18,14 +17,20 @@ const ListEmployeeComponents = () => {
       });
   }, []);
 
-  function addNewEmployee(){
-    navigator("/add-employee")
+  function addNewEmployee() {
+    navigator("/add-employee");
+  }
+
+  function updateEmployee(id){
+    navigator(`/update-employee/${id}`)
   }
 
   return (
     <div className="container">
       <h2 className="text-center mt-4">List of Employees</h2>
-      <button className="btn btn-secondary mb-4" onClick={addNewEmployee}>+ Add Employee</button>
+      <button className="btn btn-secondary mb-4" onClick={addNewEmployee}>
+        + Add Employee
+      </button>
       <table className="table table-striped table-dark table-hover table-rounded">
         <thead>
           <tr>
@@ -33,6 +38,7 @@ const ListEmployeeComponents = () => {
             <th className="w-25 p-3 fs-5 text-center">First Name</th>
             <th className="w-25 p-3 fs-5 text-center">Last Name</th>
             <th className="w-25 p-3 fs-5 text-center">Email</th>
+            <th className="w-25 p-3 fs-5 text-center">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -42,6 +48,9 @@ const ListEmployeeComponents = () => {
               <td>{employee.firstName}</td>
               <td>{employee.lastName}</td>
               <td>{employee.email}</td>
+              <td>
+                <button className="btn btn-light" onClick={() => updateEmployee(employee.id)}>Update</button>
+              </td>
             </tr>
           ))}
         </tbody>
